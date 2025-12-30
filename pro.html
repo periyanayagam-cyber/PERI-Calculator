@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PERI Pro Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+  align-items:flex-start;
+  padding-top:30px;
+}
+
+.section{
+  background:black;
+  padding:14px;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+.section h3{
+  color:#00f7ff;
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+input, select{
+  width:100%;
+  padding:10px;
+  margin:6px 0;
+  border-radius:10px;
+  border:none;
+  font-size:15px;
+}
+
+.result{
+  margin-top:8px;
+  font-weight:bold;
+}
+
+.back{
+  text-align:center;
+  margin-top:12px;
+  font-size:14px;
+  cursor:pointer;
+  opacity:0.7;
+}
+.back:hover{ color:#00f7ff; }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <div class="header">
+    <h2>🎮 PERI Pro Calculator</h2>
+  </div>
+
+  <!-- AGE CALCULATOR -->
+  <div class="section">
+    <h3>🎂 Age Calculator</h3>
+    <input type="date" id="dob">
+    <button class="eq" onclick="calcAge()">Calculate Age</button>
+    <div class="result" id="ageResult"></div>
+  </div>
+
+  <!-- BMI CALCULATOR -->
+  <div class="section">
+    <h3>⚖️ BMI Calculator</h3>
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (cm)">
+    <button class="eq" onclick="calcBMI()">Calculate BMI</button>
+    <div class="result" id="bmiResult"></div>
+  </div>
+
+  <!-- UNIT CONVERTER -->
+  <div class="section">
+    <h3>📏 Length Converter</h3>
+    <input type="number" id="meters" placeholder="Meters">
+    <button class="eq" onclick="convert()">Convert</button>
+    <div class="result" id="unitResult"></div>
+  </div>
+
+  <div class="back" onclick="goHome()">← Back to Home</div>
+</div>
+
+<script>
+function calcAge(){
+  let dob = new Date(document.getElementById("dob").value);
+  if(!dob.getTime()){
+    alert("Select date of birth");
+    return;
+  }
+  let diff = Date.now() - dob.getTime();
+  let age = new Date(diff).getUTCFullYear() - 1970;
+  document.getElementById("ageResult").innerText = "Age: " + age + " years";
+}
+
+function calcBMI(){
+  let w = weight.value;
+  let h = height.value / 100;
+  if(!w || !h){
+    alert("Enter height & weight");
+    return;
+  }
+  let bmi = (w / (h*h)).toFixed(2);
+  let status = bmi < 18.5 ? "Underweight" :
+               bmi < 25 ? "Normal" :
+               bmi < 30 ? "Overweight" : "Obese";
+  document.getElementById("bmiResult").innerText =
+    "BMI: " + bmi + " (" + status + ")";
+}
+
+function convert(){
+  let m = meters.value;
+  if(!m){
+    alert("Enter meters");
+    return;
+  }
+  let feet = (m * 3.281).toFixed(2);
+  let inches = (m * 39.37).toFixed(2);
+  document.getElementById("unitResult").innerText =
+    feet + " ft | " + inches + " in";
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

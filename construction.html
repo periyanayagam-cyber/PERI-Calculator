@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PERI Construction Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+  align-items:flex-start;
+  padding-top:30px;
+}
+
+.input-group{
+  margin-bottom:12px;
+}
+
+label{
+  font-size:14px;
+  opacity:0.85;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin-top:5px;
+  border-radius:12px;
+  border:none;
+  font-size:16px;
+  outline:none;
+}
+
+.result{
+  background:black;
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+.result div{
+  margin:6px 0;
+}
+
+.back{
+  text-align:center;
+  margin-top:12px;
+  font-size:14px;
+  cursor:pointer;
+  opacity:0.7;
+}
+.back:hover{
+  color:#00f7ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <div class="header">
+    <h2>📐 Construction Calculator</h2>
+  </div>
+
+  <div class="input-group">
+    <label>Area (Square Feet)</label>
+    <input type="number" id="area" placeholder="e.g. 1000">
+  </div>
+
+  <button class="eq" onclick="calculate()">Calculate</button>
+
+  <div class="result" id="result" style="display:none;">
+    <div><b>Bricks Required:</b> <span id="bricks">0</span></div>
+    <div><b>Cement Bags:</b> <span id="cement">0</span></div>
+    <div><b>Sand Required:</b> <span id="sand">0</span> m³</div>
+  </div>
+
+  <div class="back" onclick="goHome()">← Back to Home</div>
+</div>
+
+<script>
+function calculate(){
+  let area = parseFloat(document.getElementById("area").value);
+
+  if(!area){
+    alert("Please enter area");
+    return;
+  }
+
+  let bricks = Math.ceil(area * 60);
+  let cement = Math.ceil(area / 30);
+  let sand = (area * 0.02).toFixed(2);
+
+  document.getElementById("bricks").innerText = bricks;
+  document.getElementById("cement").innerText = cement;
+  document.getElementById("sand").innerText = sand;
+
+  document.getElementById("result").style.display = "block";
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

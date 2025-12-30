@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PERI GST Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+  align-items:flex-start;
+  padding-top:30px;
+}
+
+.input-group{
+  margin-bottom:12px;
+}
+
+label{
+  font-size:14px;
+  opacity:0.85;
+}
+
+input, select{
+  width:100%;
+  padding:12px;
+  margin-top:5px;
+  border-radius:12px;
+  border:none;
+  font-size:16px;
+  outline:none;
+}
+
+.result{
+  background:black;
+  padding:15px;
+  border-radius:15px;
+  margin-top:15px;
+}
+
+.result div{
+  margin:6px 0;
+}
+
+.back{
+  text-align:center;
+  margin-top:12px;
+  font-size:14px;
+  cursor:pointer;
+  opacity:0.7;
+}
+.back:hover{
+  color:#00f7ff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+  <div class="header">
+    <h2>💰 GST Calculator</h2>
+  </div>
+
+  <div class="input-group">
+    <label>Amount (₹)</label>
+    <input type="number" id="amount" placeholder="e.g. 1000">
+  </div>
+
+  <div class="input-group">
+    <label>GST Rate (%)</label>
+    <select id="rate">
+      <option value="5">5%</option>
+      <option value="12">12%</option>
+      <option value="18" selected>18%</option>
+      <option value="28">28%</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <label>GST Type</label>
+    <select id="type">
+      <option value="exclusive">Exclusive GST</option>
+      <option value="inclusive">Inclusive GST</option>
+    </select>
+  </div>
+
+  <button class="eq" onclick="calculateGST()">Calculate GST</button>
+
+  <div class="result" id="result" style="display:none;">
+    <div><b>Original Amount:</b> ₹<span id="original">0</span></div>
+    <div><b>GST Amount:</b> ₹<span id="gst">0</span></div>
+    <div><b>Total Amount:</b> ₹<span id="total">0</span></div>
+  </div>
+
+  <div class="back" onclick="goHome()">← Back to Home</div>
+</div>
+
+<script>
+function calculateGST(){
+  let amount = parseFloat(document.getElementById("amount").value);
+  let rate = parseFloat(document.getElementById("rate").value);
+  let type = document.getElementById("type").value;
+
+  if(!amount || !rate){
+    alert("Please enter amount");
+    return;
+  }
+
+  let gst = 0, original = 0, total = 0;
+
+  if(type === "exclusive"){
+    gst = amount * rate / 100;
+    original = amount;
+    total = amount + gst;
+  }else{
+    gst = amount * rate / (100 + rate);
+    original = amount - gst;
+    total = amount;
+  }
+
+  document.getElementById("original").innerText = original.toFixed(2);
+  document.getElementById("gst").innerText = gst.toFixed(2);
+  document.getElementById("total").innerText = total.toFixed(2);
+
+  document.getElementById("result").style.display = "block";
+}
+
+function goHome(){
+  window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

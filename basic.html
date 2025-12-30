@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PERI Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<script src="common.js"></script>
+</head>
+
+<body onload="init()">
+
+<div class="app">
+  <div class="header"><h2>Scientific Calculator</h2></div>
+  <div id="display" class="display">0</div>
+
+  <div class="buttons">
+    <button onclick="sin()">sin</button>
+    <button onclick="cos()">cos</button>
+    <button onclick="tan()">tan</button>
+    <button onclick="sqrt()">√</button>
+
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+    <button class="op" onclick="add('/')">÷</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+    <button class="op" onclick="add('*')">×</button>
+
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+    <button class="op" onclick="add('-')">−</button>
+
+    <button onclick="add('0')">0</button>
+    <button onclick="add('.')">.</button>
+    <button class="eq" onclick="calculate()">=</button>
+    <button class="op" onclick="add('+')">+</button>
+
+    <button class="clear" onclick="clearAll()">C</button>
+  </div>
+</div>
+
+</body>
+</html>

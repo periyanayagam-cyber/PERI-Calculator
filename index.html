@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00f7ff">
+
+<meta charset="UTF-8">
+<title>PERI™ Calculator Suite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: radial-gradient(circle at top,#1b1b3a,#0a0a18);
+  color:white;
+}
+
+/* Header */
+header{
+  padding:25px;
+  text-align:center;
+}
+
+header h1{
+  color:#00f7ff;
+  letter-spacing:2px;
+}
+
+header p{
+  opacity:0.8;
+  margin-top:5px;
+}
+
+/* Cards Grid */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap:25px;
+}
+
+/* Card */
+.card{
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(18px);
+  border-radius:20px;
+  padding:25px;
+  cursor:pointer;
+  transition: all 0.35s ease;
+  box-shadow: 0 0 20px rgba(0,255,255,0.15);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: 0.6s;
+}
+
+.card:hover::before{
+  transform: translateX(100%);
+}
+
+.card:hover{
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 35px rgba(0,255,255,0.4);
+}
+
+/* Card Content */
+.icon{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  margin-bottom:10px;
+}
+
+.card p{
+  font-size:14px;
+  opacity:0.85;
+}
+
+/* Footer */
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+  opacity:0.7;
+}
+
+/* Mobile Fix */
+@media(max-width:500px){
+  header h1{
+    font-size:22px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>PERI™ Calculator Suite</h1>
+  <p>All-in-One Advanced Calculator Platform</p>
+</header>
+
+<div class="container">
+
+  <div class="card" onclick="openCalc('basic.html')">
+    <div class="icon">🧮</div>
+    <h3>Basic Calculator</h3>
+    <p>Fast, smooth and powerful calculations</p>
+  </div>
+
+  <div class="card" onclick="openCalc('emi.html')">
+    <div class="icon">📊</div>
+    <h3>EMI Calculator</h3>
+    <p>Loan EMI, interest & payment breakdown</p>
+  </div>
+
+  <div class="card" onclick="openCalc('gst.html')">
+    <div class="icon">💰</div>
+    <h3>GST Calculator</h3>
+    <p>Instant GST inclusive/exclusive calculations</p>
+  </div>
+
+  <div class="card" onclick="openCalc('construction.html')">
+    <div class="icon">📐</div>
+    <h3>Construction Calculator</h3>
+    <p>Cement, sand, bricks & material estimation</p>
+  </div>
+
+  <div class="card" onclick="openCalc('student.html')">
+    <div class="icon">🎓</div>
+    <h3>Student Calculator</h3>
+    <p>Math, science & academic tools</p>
+  </div>
+
+  <div class="card" onclick="openCalc('pro.html')">
+    <div class="icon">🎮</div>
+    <h3>PERI Pro Calculator</h3>
+    <p>Advanced & experimental calculations</p>
+  </div>
+  <div class="card" onclick="openCalc('scientific.html')">
+  <div class="icon">🔬</div>
+  <h3>Scientific Calculator</h3>
+  <p>Advanced trigonometry & math</p>
+</div>
+
+
+
+
+</div>
+
+<footer>
+  © 2025 PERI™ Technologies
+</footer>
+
+<script>
+function openCalc(page){
+  window.location.href = page;
+}
+</script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
