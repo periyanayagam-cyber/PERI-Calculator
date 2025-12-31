@@ -1,6 +1,6 @@
 {
-  "name": "PERI Calculator Suite",
-  "short_name": "PERI Calc",
+  "name": "PERI NEXUS Calculator Suite",
+  "short_name": "PN Calc",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -21,6 +21,7 @@
 ]
 
 }
+
 
 
 
